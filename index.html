@@ -4,91 +4,154 @@
 <head>
   <meta charset="UTF-8" />
   <title>For Blessing</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap" rel="stylesheet" />
   <style>
+    /* Gradient background with gentle animation */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
     body {
-      background-color: #ff69b4; /* hot pink */
+      background: linear-gradient(-45deg, #ff9ccf, #ff69b4, #ff4d8c, #ff79a7);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start; /* shift content higher */
-      padding-top: 60px; /* space from top */
+      justify-content: flex-start;
+      padding-top: 60px;
       height: 100vh;
       font-family: 'Dancing Script', cursive;
       text-align: center;
       margin: 0;
       color: white;
-      overflow: hidden; /* prevent scroll from hearts */
+      overflow: hidden;
       position: relative;
     }
+
+    /* Glowing text effect */
+    @keyframes glow {
+      0%, 100% {
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #ff6ec4,
+          0 0 20px #ff6ec4,
+          0 0 40px #ff4d8c;
+      }
+      50% {
+        text-shadow:
+          0 0 10px #fff,
+          0 0 20px #ff79a7,
+          0 0 30px #ff79a7,
+          0 0 50px #ff4d8c;
+      }
+    }
+
     h1 {
-      font-size: 4rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
       margin-bottom: 20px;
-      text-shadow: 2px 2px 4px #900040;
       text-transform: uppercase;
+      animation: glow 3s ease-in-out infinite;
     }
+
     p {
-      font-size: 1.8rem;
+      font-size: 2rem;
       font-weight: bold;
-      margin: 15px 30px;
-      text-shadow: 1px 1px 2px #900040;
+      margin: 10px 40px;
+      text-shadow: 0 0 8px #ff4d8c;
       text-transform: uppercase;
+      animation: glow 4s ease-in-out infinite alternate;
     }
+
     .buttons {
       margin-top: 40px;
       display: flex;
       align-items: center;
       gap: 15px;
       font-weight: bold;
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
-    .buttons span.or {
+
+    /* Shimmer effect for OR text */
+    .or {
       color: white;
       user-select: none;
+      position: relative;
+      overflow: hidden;
     }
+    .or::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+      animation: shimmer 2.5s infinite;
+    }
+    @keyframes shimmer {
+      0% { left: -50%; }
+      100% { left: 100%; }
+    }
+
     button {
       background-color: white;
       color: #ff69b4;
       border: none;
-      padding: 15px 40px;
-      font-size: 1.4rem;
-      border-radius: 20px;
+      padding: 15px 45px;
+      font-size: 1.6rem;
+      border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      transition: background-color 0.3s ease;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+      transition: background-color 0.3s ease, transform 0.2s ease;
       position: relative;
       overflow: hidden;
+      font-family: 'Dancing Script', cursive;
+      user-select: none;
     }
     button:hover {
       background-color: #ff85c1;
+      transform: scale(1.05);
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 29"><path fill="%23ff4d8c" d="M23.6 0C20.4 0 17.8 2.3 16 5 14.2 2.3 11.6 0 8.4 0 3.8 0 0 3.8 0 8.4c0 11.7 16 20.6 16 20.6s16-8.9 16-20.6c0-4.6-3.8-8.4-8.4-8.4z"/></svg>') 16 29, pointer;
     }
+
     /* Heart animation */
     .heart {
       position: fixed;
-      width: 20px;
-      height: 20px;
-      background-color: red; /* red hearts */
+      width: 22px;
+      height: 22px;
+      background-color: red;
       transform: rotate(45deg);
-      animation: floatUp 5s forwards; /* lasts 5 seconds */
+      animation: floatUp 5s forwards;
       z-index: 9999;
       pointer-events: none;
+      filter: drop-shadow(0 0 2px #ff4d8c);
     }
     .heart::before,
     .heart::after {
       content: "";
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: red; /* red hearts */
+      width: 22px;
+      height: 22px;
+      background-color: red;
       border-radius: 50%;
     }
     .heart::before {
-      top: -10px;
+      top: -11px;
       left: 0;
     }
     .heart::after {
-      left: 10px;
+      left: 11px;
       top: 0;
     }
     @keyframes floatUp {
@@ -105,8 +168,10 @@
 </head>
 <body>
   <h1>BLESSING ❤️</h1>
-  <p>I’VE GROWN TO LOVE YOU OVER THE LAST FEW WEEKS AND I’M READY FOR WHAT’S NEXT.</p>
-  <p>SOOOOO WILL YOU BE MY GIRLFRIEND? 🥹❤️</p>
+  <p>Blessing, every moment with you has made my heart fuller.</p>
+  <p>I can’t imagine my future without you in it.</p>
+  <p>Sooo… will you be my girlfriend? 🥹❤️</p>
+
   <div class="buttons">
     <button id="yes1">YES</button>
     <span class="or">OR</span>
@@ -124,12 +189,11 @@
 
       setTimeout(() => {
         heart.remove();
-      }, 5000); // 5 seconds
+      }, 5000);
     }
 
     function explodeHearts() {
-      alert("I KNEW YOU'D SAY YES!!!!, I LOVE YOU MAMA");
-      // create 30 hearts randomly around the whole screen
+      alert("I KNEW YOU'D SAY YES!!!! I LOVE YOU SO MUCH, MY QUEEN ❤️");
       for (let i = 0; i < 30; i++) {
         createHeart();
       }
@@ -140,4 +204,5 @@
   </script>
 </body>
 </html>
+
 
