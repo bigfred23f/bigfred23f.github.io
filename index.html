@@ -17,6 +17,7 @@
       text-align: center;
       margin: 0;
       color: white;
+      overflow: hidden; /* so hearts don’t cause scroll */
     }
     h1 {
       font-size: 4rem;
@@ -31,6 +32,11 @@
       text-shadow: 1px 1px 2px #900040;
       text-transform: uppercase;
     }
+    .buttons {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+    }
     button {
       background-color: white;
       color: #ff69b4;
@@ -39,13 +45,51 @@
       font-size: 1.4rem;
       border-radius: 20px;
       cursor: pointer;
-      margin-top: 40px;
       font-weight: bold;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     button:hover {
       background-color: #ff85c1;
+    }
+    /* Heart animation */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      transform: rotate(45deg);
+      animation: floatUp 1.5s forwards;
+      z-index: 9999;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(45deg);
+      }
     }
   </style>
 </head>
@@ -53,6 +97,39 @@
   <h1>BLESSING ❤️</h1>
   <p>I’VE GROWN TO LOVE YOU OVER THE LAST FEW WEEKS AND I’M READY FOR WHAT’S NEXT.</p>
   <p>SOOOOO WILL YOU BE MY GIRLFRIEND? 🥹❤️</p>
-  <button onclick="alert('YAY! YOU JUST MADE MY DAY! 😊')">YES</button>
+  <div class="buttons">
+    <button onclick="handleYesClick()">YES</button>
+    <button onclick="handleYesClick()">YES</button>
+  </div>
+
+  <script>
+    function createHeart(x, y) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1500);
+    }
+
+    function handleYesClick(event) {
+      alert('YAY! YOU JUST MADE MY DAY! 😊');
+      // create 10 hearts at random positions near the click
+      for (let i = 0; i < 10; i++) {
+        const x = event.clientX + (Math.random() * 60 - 30);
+        const y = event.clientY + (Math.random() * 60 - 30);
+        createHeart(x, y);
+      }
+    }
+
+    // Add event listeners to buttons
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', handleYesClick);
+    });
+  </script>
 </body>
 </html>
