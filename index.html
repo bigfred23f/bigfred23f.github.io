@@ -47,4 +47,97 @@
       user-select: none;
     }
     button {
-      backgrou
+      background-color: white;
+      color: #ff69b4;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.4rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    button:hover {
+      background-color: #ff85c1;
+    }
+    /* Heart animation */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background-color: red; /* red hearts */
+      transform: rotate(45deg);
+      animation: floatUp 5s forwards; /* lasts 5 seconds */
+      z-index: 9999;
+      pointer-events: none;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red; /* red hearts */
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(45deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-150px) rotate(45deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>BLESSING ❤️</h1>
+  <p>I’VE GROWN TO LOVE YOU OVER THE LAST FEW WEEKS AND I’M READY FOR WHAT’S NEXT.</p>
+  <p>SOOOOO WILL YOU BE MY GIRLFRIEND? 🥹❤️</p>
+  <div class="buttons">
+    <button id="yes1">YES</button>
+    <span class="or">OR</span>
+    <button id="yes2">YES</button>
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      // random position anywhere on screen
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 5000); // 5 seconds
+    }
+
+    function explodeHearts() {
+      alert("I KNEW YOU'D SAY YES!!!!, I LOVE YOU MAMA");
+      // create 30 hearts randomly around the whole screen
+      for (let i = 0; i < 30; i++) {
+        createHeart();
+      }
+    }
+
+    document.getElementById('yes1').addEventListener('click', explodeHearts);
+    document.getElementById('yes2').addEventListener('click', explodeHearts);
+  </script>
+</body>
+</html>
+
